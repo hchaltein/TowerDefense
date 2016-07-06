@@ -1,0 +1,35 @@
+Versão do Unity utilizada: 5.3.5f1 Personal
+
+O jogo encontra-se na cena GameScene. Ele suporta ondas infinitas e é bem customizável (através do editor). Players não podem bloquear o caminho dos inimigos e inimigos ajustam-se automaticamente à construção de novas torres.
+
+Por favor rode o jogo apenas em resoluções 16:9
+
+O jogo contém:
+* 2 inimigos terrestres: um normal e um rápido
+* 2 torres de ataque: uma que atira e outra que causa slow nos inimigos em área
+
+As configurações do player do jogo você consegue alterar através do Gameobject GameMngr:
+* Valores iniciais de HP e Cash
+* Dano causado pela torre que atira
+* Custo de ambas as torres
+
+As configurações dos gerador de inimigos você consegue alterar através do objeto EnemyGen:
+* Tempo de espera entre ondas
+* Tempo de espera entre spawn de inimigos individuas
+* Inimigos por onda
+* Acrécimo de inimigos por onda
+* Total de ondas a serem spawnadas.
+
+As configurações dos inimigos você consegue alterar usando seus respectivos prefabs, localizados em Assets\Prefabs
+
+Condições de vitória: Sobreviver a todas as ondas.
+Condições de derrota: Deixar inimigos o suficiente passarem, zerando o HP do player.
+
+Controles:
+
+* Clique em um espaço em branco para construir o tipo de torre selecionada. Clique em uma torre para vende-la
+* Botão "C" => altera a torre selecionada.
+
+Notas:
+* Inimigos conseguem passar entre duas torres posicionadas diagonalmente.
+* O botão Retry recarrega a cena, porém não inicia o jogo e eu não tive tempo de achar o erro.

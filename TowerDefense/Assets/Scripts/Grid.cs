@@ -17,7 +17,7 @@ public class Grid : MonoBehaviour
     int tilesInX, tilesInZ;         // Total de Tiles em cada eixo
 
     // Tile Characteristics
-    public float tileRadius;           // "Raio" de uma tile.
+    public float TileRadius;           // "Raio" de uma tile.
     float tileDiameter;
 
     [SerializeField]
@@ -29,7 +29,7 @@ public class Grid : MonoBehaviour
 
 	void Start ()
     {
-        tileDiameter = tileRadius * 2;
+        tileDiameter = TileRadius * 2;
 
         // Não existem meio-tiles então tiles são arredondadas para números inteiros.
         tilesInX = Mathf.RoundToInt(gridWorldSize.x / tileDiameter);
@@ -55,18 +55,16 @@ public class Grid : MonoBehaviour
             for (int z = 0; z < tilesInZ; z++)
             {
                 // Posição da tile infeiror esquerda + Centro da Tile em x + centro da Tile em z
-                Vector3 tileWorldPos = gridBotLeftWorldPos + Vector3.right * (x * tileDiameter + tileRadius) + Vector3.forward * (z * tileDiameter + tileRadius);
+                Vector3 tileWorldPos = gridBotLeftWorldPos + Vector3.right * (x * tileDiameter + TileRadius) + Vector3.forward * (z * tileDiameter + TileRadius);
 
                 // Instancia tile na posição do grid.
                 GameObject tileGO = Instantiate(TilePreFab, tileWorldPos, Quaternion.identity) as GameObject;
                 // Escreve valores iniciais na tile.
                 Tile tileScrpt = tileGO.GetComponent<Tile>();
-                tileScrpt.changeTileType(TileType.Floor);
+                //tileScrpt.changeTileType(TileType.Floor);
                 tileScrpt.GridPosX = x;
                 tileScrpt.GridPosZ = z;
-
                 tileGO.transform.SetParent(this.transform);
-
                 // Adiciona tile ao grid.
                 tileGrid[x, z] = tileScrpt;
             }
@@ -77,8 +75,8 @@ public class Grid : MonoBehaviour
     public Tile GetTileFromWorld(Vector3 worldPos)
     {
         // Acha posição de mundo dentro do grid em termos localização "percentual" em cada eixo do grid.. 
-        float percentX = (worldPos.x / gridWorldSize.x) + tileRadius;
-        float percentZ = (worldPos.z / gridWorldSize.y) + tileRadius;    // gridWorldSize é Vec2 logo Y=Z 
+        float percentX = (worldPos.x / gridWorldSize.x) + TileRadius;
+        float percentZ = (worldPos.z / gridWorldSize.y) + TileRadius;    // gridWorldSize é Vec2 logo Y=Z 
 
         // Limita valor para entre 0 e 1.
         percentX = Mathf.Clamp01(percentX);
@@ -120,7 +118,8 @@ public class Grid : MonoBehaviour
         return Neighbours;
     }
 
-    // Dsenha gizmos para visualização.
+
+    /*// Desenha gizmos para visualização.
     void OnDrawGizmos()
     {
         // Desenha o contorno do grid. 
@@ -145,8 +144,9 @@ public class Grid : MonoBehaviour
                 if (playerTile == tile) Gizmos.color = Color.yellow;
 
                 // Desenha cubo em cada Tile com diametro levemente menor do que da tile.
-                Gizmos.DrawCube(tile.worldPos, Vector3.one * (tileDiameter - 0.1f));
+                Gizmos.DrawCube(tile.WorldPos, Vector3.one * (tileDiameter - 0.1f));
             }
         }
     }
+    */
 }

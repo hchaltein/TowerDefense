@@ -2,7 +2,7 @@
 using System.Collections;
 
 // Código de movimento do Player de Teste
-//Usado apra testar colisões, labirinto e A*.
+// Usado para testar colisões, labirinto, torres e A*.
 public class TestPlayerBhvr : MonoBehaviour
 {
     [SerializeField]
